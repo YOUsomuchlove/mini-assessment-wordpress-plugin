@@ -1,0 +1,5 @@
+# WordPress development artifacts
+.DS_Store
+*.log
+vendor/
+node_modules/
