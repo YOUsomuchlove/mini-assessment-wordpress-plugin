@@ -1,7 +1,7 @@
 <?php
 class WP_Assessment_DB_Manager {
 
-    private $version = '1.3.0';
+    private $version = '1.4.0';
 
     public function create_tables() {
         global $wpdb;
@@ -15,10 +15,11 @@ class WP_Assessment_DB_Manager {
             title varchar(255) NOT NULL,
             description text,
             status varchar(20) DEFAULT 'draft' NOT NULL,
+            sort_order int(11) DEFAULT 0 NOT NULL,
             created_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY  (id),
-            KEY status (status)
+            KEY status_order (status, sort_order)
         ) $charset_collate;";
         dbDelta( $sql1 );
 

@@ -9,6 +9,7 @@ Headless WordPress plugin for managing Assessments, Questions and Answers throug
 - Configurable role matrix for Assessment, Question and Answer actions.
 - `assessment_manager` role and WordPress admin management screens.
 - JWT access tokens (15 minutes) and rotating HttpOnly refresh-token sessions (7 days).
+- Basic database-error logging that excludes credentials, tokens and request payloads.
 
 ## Installation
 
