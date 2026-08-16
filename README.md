@@ -1,24 +1,24 @@
 # Mini Assessment WordPress Plugin
 
-Headless WordPress plugin for managing Assessments, Questions and Answers through the `assessment/v1` REST API.
+WordPress Plugin theo kiến trúc headless để quản lý Assessment, Question và Answer thông qua REST API `assessment/v1`.
 
-## Features
+## Chức năng
 
-- Custom database tables with activation/upgrade migrations.
-- Public published-content API with pagination and search.
-- Configurable role matrix for Assessment, Question and Answer actions.
-- `assessment_manager` role and WordPress admin management screens.
-- JWT access tokens (15 minutes) and rotating HttpOnly refresh-token sessions (7 days).
-- Basic database-error logging that excludes credentials, tokens and request payloads.
+- Custom database tables với migration khi activate/nâng cấp.
+- Public API cho dữ liệu publish có phân trang và tìm kiếm.
+- Role matrix cấu hình được cho thao tác Assessment, Question và Answer.
+- Role `assessment_manager` và các trang quản lý trong WordPress Admin.
+- JWT access token 15 phút và refresh-token HttpOnly xoay vòng 7 ngày.
+- Logging tối thiểu cho lỗi database, không ghi credentials, token hoặc request payload.
 
-## Installation
+## Cài đặt
 
-1. Copy this folder to `wp-content/plugins/wp-assessment-plugin`.
-2. Activate **Mini Assessment Plugin** in WordPress Admin.
-3. Open **Mini Assessment** in wp-admin to configure role permissions and manage data.
+1. Copy thư mục này vào `wp-content/plugins/wp-assessment-plugin`.
+2. Kích hoạt **Mini Assessment Plugin** trong WordPress Admin.
+3. Mở **Mini Assessment** trong wp-admin để cấu hình role permission và quản lý dữ liệu.
 
-## Authentication
+## Xác thực
 
-`POST /wp-json/assessment/v1/auth/login` returns a short-lived access token and sets an HttpOnly refresh cookie. Send the access token in `Authorization: Bearer <token>` for protected API calls. The SPA refreshes the access token automatically; the refresh cookie is rotated after each use.
+`POST /wp-json/assessment/v1/auth/login` trả access token ngắn hạn và thiết lập refresh cookie HttpOnly. Gửi access token bằng `Authorization: Bearer <token>` khi gọi API cần bảo vệ. SPA tự refresh access token; refresh cookie được xoay vòng sau mỗi lần sử dụng.
 
-For production, configure a unique WordPress `AUTH_KEY`, use HTTPS and set allowed front-end origins through the `wp_assessment_allowed_origins` filter.
+Ở production, cấu hình `AUTH_KEY` riêng cho WordPress, dùng HTTPS và đặt origin frontend được phép qua filter `wp_assessment_allowed_origins`.
