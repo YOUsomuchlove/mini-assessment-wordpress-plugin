@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Mini Assessment Plugin
  * Description: Headless WordPress assessment API with role-based permissions and JWT authentication.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: Freelancer
  */
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 define( 'WP_ASSESSMENT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WP_ASSESSMENT_PLUGIN_VERSION', '1.3.0' );
+define( 'WP_ASSESSMENT_PLUGIN_VERSION', '1.4.0' );
 define( 'WP_ASSESSMENT_PERMISSION_OPTION', 'wp_assessment_role_permissions' );
 
 require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-db-manager.php';

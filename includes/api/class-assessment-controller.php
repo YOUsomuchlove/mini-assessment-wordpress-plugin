@@ -25,7 +25,7 @@ class WP_Assessment_Controller extends WP_REST_Controller {
         $search = sanitize_text_field( (string) $request->get_param( 'search' ) );
         if ( $search !== '' ) { $like = '%' . $wpdb->esc_like( $search ) . '%'; $where .= $wpdb->prepare( ' AND (title LIKE %s OR description LIKE %s)', $like, $like ); }
         $total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table WHERE $where" );
-        $items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table WHERE $where ORDER BY created_at DESC, id DESC LIMIT %d OFFSET %d", $per_page, ( $page - 1 ) * $per_page ) );
+        $items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table WHERE $where ORDER BY sort_order ASC, id DESC LIMIT %d OFFSET %d", $per_page, ( $page - 1 ) * $per_page ) );
         $response = rest_ensure_response( $items ); $response->header( 'X-WP-Total', $total ); $response->header( 'X-WP-TotalPages', (int) ceil( $total / $per_page ) ); return $response;
     }
     public function get_item( $request ) { global $wpdb; $table = $wpdb->prefix . 'assessment'; $item = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table WHERE id = %d", absint( $request['id'] ) ) ); if ( ! $item || ( $item->status !== 'publish' && ! $this->may_view_private() ) ) { return new WP_Error( 'not_found', 'Assessment not found.', array( 'status' => 404 ) ); } return rest_ensure_response( $item ); }
