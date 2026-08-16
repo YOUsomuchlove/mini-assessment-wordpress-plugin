@@ -15,6 +15,7 @@ class WP_Assessment_Answer_Controller extends WP_REST_Controller {
         }
         $table = $wpdb->prefix . 'assessment_answers';
         if ( false === $wpdb->insert( $table, array( 'question_id' => $question_id, 'user_id' => get_current_user_id(), 'content' => $content, 'score' => intval( $request->get_param( 'score' ) ), 'sort_order' => absint( $request->get_param( 'sort_order' ) ), 'created_at' => current_time( 'mysql', true ) ), array( '%d', '%d', '%s', '%d', '%d', '%s' ) ) ) {
+            WP_Assessment_Logger::database_error( 'create_answer' );
             return new WP_Error( 'db_error', 'Could not create answer.', array( 'status' => 500 ) );
         }
         return new WP_REST_Response( $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table WHERE id = %d", $wpdb->insert_id ) ), 201 );
