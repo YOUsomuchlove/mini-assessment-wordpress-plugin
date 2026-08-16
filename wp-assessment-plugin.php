@@ -13,6 +13,7 @@ define( 'WP_ASSESSMENT_PLUGIN_VERSION', '1.4.0' );
 define( 'WP_ASSESSMENT_PERMISSION_OPTION', 'wp_assessment_role_permissions' );
 
 require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-db-manager.php';
+require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-logger.php';
 require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-permissions.php';
 require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-jwt-auth.php';
 require_once WP_ASSESSMENT_PLUGIN_DIR . 'includes/class-admin.php';
